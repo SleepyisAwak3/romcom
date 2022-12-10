@@ -13,21 +13,17 @@ var secCovTag = document.querySelector(".tagline-2");
 var homePageSection = document.querySelector(".main-cover");
 var savedCoversMain = document.querySelector(".view.saved-view.hidden");
 var savedCoversSection = document.querySelector('.saved-covers-section');
+var newCoverForm = document.querySelector(".view.form-view.hidden");
 
 var viewingSaved = false;
 
-
-
-var newCoverForm = document.querySelector(".view.form-view.hidden");
-
-var savedCovers = [
-  new Cover("http://3.bp.blogspot.com/-iE4p9grvfpQ/VSfZT0vH2UI/AAAAAAAANq8/wwQZssi-V5g/s1600/Do%2BNot%2BForsake%2BMe%2B-%2BImage.jpg", "Sunsets and Sorrows", "sunsets", "sorrows")
-];
+var savedCovers = [new Cover("http://3.bp.blogspot.com/-iE4p9grvfpQ/VSfZT0vH2UI/AAAAAAAANq8/wwQZssi-V5g/s1600/Do%2BNot%2BForsake%2BMe%2B-%2BImage.jpg", "Sunsets and Sorrows", "sunsets", "sorrows")];
 var currentCover;
 
 
 
-document.onload = runPageLoader();
+
+document.onload = makeCovAndUpdate();
 randomCoverButton.addEventListener("click", makeCovAndUpdate);
 saveCoverButton.addEventListener("click", saveCover);
 viewSavedButton.addEventListener("click", viewSavedCovers);
@@ -37,9 +33,14 @@ makeMyBookButton.addEventListener("click", saveFormData);
 
 
 
+
 function runPageLoader() {
   savedCovers.splice(0, 1);
   makeCovAndUpdate();
+};
+
+function getRandomIndex(array) {
+  return Math.floor(Math.random() * array.length);
 };
 
 function makeCovAndUpdate() {
@@ -85,7 +86,7 @@ function viewSavedCovers() {
   };
 };
 
-function displaySavedCovers(num) {
+function displaySavedCovers(numCycle) {
   var display = document.createElement("div");
   var smallImage = document.createElement("img");
   var smallPage = document.createElement("p");
