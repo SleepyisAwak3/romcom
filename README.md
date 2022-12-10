@@ -1,41 +1,42 @@
-# RomCom
 
-A boilerplate repo. 
-
-## Set Up
-1. ONE teammate: fork this boilerplate repository 
-2. Clone down your new, forked repo
-3. cd into the repository
-4. Open it in your text editor
-5. View the project in the browser by running open index.html in your terminal
-6. Add all project partners and your assigned instructor as collaborators on the repository
-
-The project spec & rubric can be found [here](https://frontend.turing.io/projects/module-1/romcom-pair.html)
-
-______________________________________________________  
-# README Template  
-Before turning this project in, erase this line and everything above it and fill in the info below.  
 ______________________________________________________  
 
 # RomCom  
 
-### Abstract:
-[//]: <> (Briefly describe what you built and its features. What problem is the app solving? How does this application solve that problem?)
+## Abstract:
+---
+    This repo creates an application that grants the user to create random and custom book covers with a title and descriptors. They are then able to save these covers, both custom and random. They can also delete these book covers as they see fit. 
 
-### Installation Instructions:
-[//]: <> (What steps does a person have to take to get your app cloned down and running?)
+## Installation Instructions:
+---
 
-### Preview of App:
-[//]: <> (Provide ONE gif or screenshot of your application - choose the "coolest" piece of functionality to show off.)
+1. Fork this Repo
+2. Open terminal and navagaite where you would like to store the application.
+3. Type git clone 
+4. Copy the SSH and paste it next to git clone.
+5. Once file is pulled down and copied, navigate into the directorty romcom. 
+6. Type the phrase "open index.html" into your terminal to open the test window of the application.
 
-### Context:
-[//]: <> (Give some context for the project here. How long did you have to work on it? How far into the Turing program are you?)
+## Preview of App:
+---
+![Alt Text]
+] (https://im3.ezgif.com/tmp/ezgif-3-7c8304a35f.gif)
+## Context:
+---
 
-### Contributors:
-[//]: <> (Who worked on this application? Link to their GitHubs.)
+It took us several days to complete this. Each day we spent long hours taking time to research and find more information to try and complete this. 
+## Contributors:
+---
+- Daniel: https://github.com/danielcurtin
+- Noah: https://github.com/SleepyisAwak3
 
-### Learning Goals:
-[//]: <> (What were the learning goals of this project? What tech did you work with?)
+## Learning Goals:
+---
+- Learn how JavaScript, HTML, and CSS are all interlocked together. 
+- Learn how to build an function application with the user in mind.
+- Learn how to coordinate and code between two different people.
 
-### Wins + Challenges:
-[//]: <> (What are 2-3 wins you have from this project? What were some challenges you faced - and how did you get over them?)
+## Wins + Challenges:
+---
+- Our main wins would be figruing out how to make the array for the Saved Covers page and make that function. 
+- Another one would be the making the delete ability work and function.
