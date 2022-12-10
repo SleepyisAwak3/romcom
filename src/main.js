@@ -24,8 +24,7 @@ var currentCover;
 
 
 
-
-document.onload = makeCovAndUpdate();
+document.onload = runPageLoader();
 randomCoverButton.addEventListener("click", makeCovAndUpdate);
 saveCoverButton.addEventListener("click", saveCover);
 viewSavedButton.addEventListener("click", viewSavedCovers);
@@ -35,14 +34,9 @@ makeMyBookButton.addEventListener("click", saveFormData);
 
 
 
-
 function runPageLoader() {
   savedCovers.splice(0, 1);
   makeCovAndUpdate();
-};
-
-function getRandomIndex(array) {
-  return Math.floor(Math.random() * array.length);
 };
 
 function makeCovAndUpdate() {
@@ -88,7 +82,7 @@ function viewSavedCovers() {
   };
 };
 
-function displaySavedCovers(numCycle) {
+function displaySavedCovers(num) {
   var display = document.createElement("div");
   var smallImage = document.createElement("img");
   var smallPage = document.createElement("p");
@@ -189,3 +183,4 @@ function saveFormData(event) {
   document.querySelector("#descriptor1").value = "";
   document.querySelector("#descriptor2").value = "";
 };
+ 
