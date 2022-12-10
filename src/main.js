@@ -14,6 +14,8 @@ var homePageSection = document.querySelector(".main-cover");
 var savedCoversMain = document.querySelector(".view.saved-view.hidden");
 var savedCoversSection = document.querySelector('.saved-covers-section');
 
+var viewingSaved = false;
+
 
 
 var newCoverForm = document.querySelector(".view.form-view.hidden");
@@ -66,6 +68,7 @@ function saveCover() {
 };
 
 function viewSavedCovers() {
+  viewingSaved = true;
   randomCoverButton.classList.add("hidden");
   saveCoverButton.classList.add("hidden");
   homePageSection.classList.add("hidden");
@@ -115,7 +118,7 @@ function resetSaved() {
 
 function loopSaveReset() {
   for (var i = 0; i < savedCovers.length; i++) {
-    resetSaved();
+      resetSaved();
   };
 };
 
@@ -126,7 +129,10 @@ function viewForm() {
   homeButton.classList.remove("hidden");
   newCoverForm.classList.remove("hidden");
 
-  loopSaveReset();
+  if (viewingSaved) {
+    loopSaveReset();
+    viewingSaved = false;
+  };
 };
 
 function viewHome() {
@@ -137,7 +143,10 @@ function viewHome() {
   randomCoverButton.classList.remove("hidden");
   homePageSection.classList.remove("hidden");
 
-  loopSaveReset();
+  if (viewingSaved) {
+    loopSaveReset();
+    viewingSaved = false;
+  };
 };
 
 function saveFormData(event) {
