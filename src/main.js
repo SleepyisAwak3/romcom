@@ -15,8 +15,6 @@ var savedCoversMain = document.querySelector(".view.saved-view.hidden");
 var savedCoversSection = document.querySelector('.saved-covers-section');
 var newCoverForm = document.querySelector(".view.form-view.hidden");
 
-var viewingSaved = false;
-
 var savedCovers = [
   new Cover("http://3.bp.blogspot.com/-iE4p9grvfpQ/VSfZT0vH2UI/AAAAAAAANq8/wwQZssi-V5g/s1600/Do%2BNot%2BForsake%2BMe%2B-%2BImage.jpg", "Sunsets and Sorrows", "sunsets", "sorrows")
 ];
@@ -30,7 +28,7 @@ saveCoverButton.addEventListener("click", saveCover);
 viewSavedButton.addEventListener("click", viewSavedCovers);
 makeOwnCoverButton.addEventListener("click", viewForm);
 homeButton.addEventListener("click", viewHome);
-makeMyBookButton.addEventListener("click", saveFormData);
+makeMyBookButton.addEventListener("click", makeCustomBook);
 
 
 
@@ -44,19 +42,19 @@ function makeCovAndUpdate() {
   updateHome();
 };
 
+function updateHome() {
+  covImage.src = currentCover.cover;
+  covTitle.innerText = currentCover.title;
+  firstCovTag.innerText = currentCover.tagline1;
+  secCovTag.innerText = currentCover.tagline2;
+};
+
 function getRandomIndex(array) {
   return Math.floor(Math.random() * array.length);
 };
 
 function newRandCover() {
   currentCover = new Cover(covers[getRandomIndex(covers)], titles[getRandomIndex(titles)], descriptors[getRandomIndex(descriptors)], descriptors[getRandomIndex(descriptors)]);
-};
-
-function updateHome() {
-  covImage.src = currentCover.cover;
-  covTitle.innerText = currentCover.title;
-  firstCovTag.innerText = currentCover.tagline1;
-  secCovTag.innerText = currentCover.tagline2;
 };
 
 function saveCover() {
@@ -69,11 +67,10 @@ function saveCover() {
 };
 
 function viewSavedCovers() {
-  viewingSaved = true;
-  randomCoverButton.classList.add("hidden");
+  newCoverForm.classList.add("hidden");
   saveCoverButton.classList.add("hidden");
   homePageSection.classList.add("hidden");
-  newCoverForm.classList.add("hidden");
+  randomCoverButton.classList.add("hidden");
   homeButton.classList.remove("hidden");
   savedCoversMain.classList.remove("hidden");
   
@@ -83,33 +80,60 @@ function viewSavedCovers() {
 };
 
 function displaySavedCovers(num) {
-  var display = document.createElement("div");
-  var smallImage = document.createElement("img");
-  var smallPage = document.createElement("p");
-  var smallTag = document.createElement("p");
-  var smallId = document.createElement("p");
+  var displayCovers = document.createElement("div");
+  var miniCover = document.createElement("img");
+  var miniTitle = document.createElement("p");
+  var miniDesc = document.createElement("p");
+  var miniId = document.createElement("p");
   
-  savedCoversSection.appendChild(display);
-  display.classList.add("mini-cover");
-  display.setAttribute("id", `${num}`);
-  display.addEventListener("dblclick", deleteCover);
+  savedCoversSection.appendChild(displayCovers);
+  displayCovers.classList.add("mini-cover");
+  displayCovers.setAttribute("id", `${num}`);
+  displayCovers.addEventListener("dblclick", deleteCover);
   
-  smallImage.classList.add("mini-cover");
-  smallImage.src = savedCovers[num].cover;
-  display.appendChild(smallImage);
+  miniCover.classList.add("mini-cover");
+  miniCover.src = savedCovers[num].cover;
+  displayCovers.appendChild(miniCover);
   
-  smallPage.classList.add("cover-title");
-  smallPage.innerText = savedCovers[num].title;
-  display.appendChild(smallPage);
+  miniTitle.classList.add("cover-title");
+  miniTitle.innerText = savedCovers[num].title;
+  displayCovers.appendChild(miniTitle);
   
-  smallTag.classList.add("tagline");
-  smallTag.innerText = `A tale of ${savedCovers[num].tagline1} and ${savedCovers[num].tagline2}`;
-  display.appendChild(smallTag);
+  miniDesc.classList.add("tagline");
+  miniDesc.innerText = `A tale of ${savedCovers[num].tagline1} and ${savedCovers[num].tagline2}`;
+  displayCovers.appendChild(miniDesc);
 
-  smallId.classList.add("cover-id");
-  smallId.classList.add("hidden");
-  smallId.innerText = savedCovers[num].id;
-  display.appendChild(smallId);
+  miniId.classList.add("cover-id");
+  miniId.classList.add("hidden");
+  miniId.innerText = savedCovers[num].id;
+  displayCovers.appendChild(miniId);
+};
+
+function viewHome() {
+  homeButton.classList.add("hidden");
+  newCoverForm.classList.add("hidden");
+  savedCoversMain.classList.add("hidden");
+  homePageSection.classList.remove("hidden");
+  saveCoverButton.classList.remove("hidden");
+  randomCoverButton.classList.remove("hidden");
+
+  loopSaveReset();
+};
+
+function viewForm() {
+  saveCoverButton.classList.add("hidden");
+  savedCoversMain.classList.add("hidden");
+  homePageSection.classList.add("hidden");
+  randomCoverButton.classList.add("hidden");
+  homeButton.classList.remove("hidden");
+  newCoverForm.classList.remove("hidden");
+
+  loopSaveReset();
+};
+
+function resetSaved() {
+  var savedDiv = document.querySelector("div");
+  savedDiv.remove();
 };
 
 function loopSaveReset() {
@@ -130,39 +154,7 @@ function deleteCover() {
   };
 };
 
-function resetSaved() {
-  var savedDiv = document.querySelector("div");
-  savedDiv.remove();
-};
-
-function viewForm() {
-  saveCoverButton.classList.add("hidden");
-  homePageSection.classList.add("hidden");
-  randomCoverButton.classList.add("hidden");
-  homeButton.classList.remove("hidden");
-  newCoverForm.classList.remove("hidden");
-
-  if (viewingSaved) {
-    loopSaveReset();
-    viewingSaved = false;
-  };
-};
-
-function viewHome() {
-  savedCoversMain.classList.add("hidden");
-  newCoverForm.classList.add("hidden");
-  homeButton.classList.add("hidden");
-  saveCoverButton.classList.remove("hidden");
-  randomCoverButton.classList.remove("hidden");
-  homePageSection.classList.remove("hidden");
-
-  if (viewingSaved) {
-    loopSaveReset();
-    viewingSaved = false;
-  };
-};
-
-function saveFormData(event) {
+function makeCustomBook(event) {
   event.preventDefault();
   var coverInput = document.querySelector("#cover").value;
   var titleInput = document.querySelector("#title").value;
@@ -183,4 +175,3 @@ function saveFormData(event) {
   document.querySelector("#descriptor1").value = "";
   document.querySelector("#descriptor2").value = "";
 };
- 
